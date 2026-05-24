@@ -1,33 +1,63 @@
 # Invoice Generator
 
-A simple, beautiful invoice generator that runs entirely in your browser.
+A simple, beautiful invoice generator that runs entirely in your browser. No sign-ups, no servers — your data never leaves your computer.
 
 ## Features
 
-- 💰 Multiple currencies (USD, KES, GBP, EUR)
-- 👥 Client management - save & reuse client details
-- 💾 Auto-save settings to localStorage
-- 🖨️ Print to PDF or download as HTML
-- 📧 Email invoice directly from app
-- 📱 Works offline
+- Multiple currencies (USD, KES, GBP, EUR)
+- Client management — save & reuse client details
+- Auto-save settings to localStorage
+- Print to PDF or download as HTML
+- Email invoice directly from the app
+- Works offline
 
-## How to Use
+## How to Download & Use
 
-1. Open `index.html` in your browser
-2. Fill in your account details (bank info) in Account Settings
-3. Click "Save Account Info"
-4. Add clients and create invoices
+### Option 1: Use Online (GitHub Pages)
 
-## Data Storage
+Visit **https://[your-username].github.io/invoice-generator**
 
-All data is stored locally in your browser. Nothing is sent to any server.
+### Option 2: Download & Use Offline
 
-- Account settings → localStorage
-- Saved clients → localStorage
-- Invoice history → Not stored (create fresh each time)
+1. Click the green **Code** button above and select **Download ZIP**
+2. Unzip the folder anywhere on your computer
+3. Open `index.html` in any browser (Chrome, Firefox, Safari, Edge)
+4. That's it — start creating invoices
 
-## Deploy
+### Option 3: Clone with Git
 
-This app can be hosted anywhere - just open `index.html` in a browser.
+```bash
+git clone https://github.com/[your-username]/invoice-generator.git
+cd invoice-generator
+open index.html
+```
 
-For GitHub Pages: push to a repo and enable Pages in settings.
+## Usage
+
+1. Fill in your account details under **Account Settings** (name, bank info, address)
+2. Click **Save Account Info**
+3. Add client details under **Invoice Details**
+4. Click **Save** to store client info for reuse
+5. Fill in the invoice description, amount, and percentage
+6. Click **Generate Invoice** to preview
+7. Use **Print/PDF** to save or print, or **Download** to save as HTML
+
+## Data & Privacy
+
+All data is stored **only in your browser** using localStorage. Nothing is sent to any server. Your account details, saved clients, and settings remain private on your device.
+
+If you clear your browser data, you'll lose saved settings. To keep a backup:
+- Download your invoice as HTML or PDF
+- Keep a copy of the downloaded ZIP as a fresh start
+
+## Deploy Your Own
+
+This app can be hosted on GitHub Pages for free:
+
+```bash
+git clone https://github.com/[your-username]/invoice-generator.git
+cd invoice-generator
+git push origin main
+```
+
+Then go to **Settings → Pages** in your repo and set the source to `main` branch.
