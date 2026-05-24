@@ -567,7 +567,7 @@
                 <div class="invoice-parties">
                     <div class="invoice-party">
                         <h4>From</h4>
-                        <p><strong>${yourName}</strong>${physicalAddress ? `<br>${physicalAddress}` : ''}${postalAddress ? `<br>${postalAddress}` : ''}${yourEmail ? `<br>${yourEmail}` : ''}</p>
+                        <p>${yourName ? `<strong>Your Name</strong><br>${yourName}` : ''}${physicalAddress ? `<br><br><strong>Address</strong><br>${physicalAddress}` : ''}${postalAddress ? `<br>${postalAddress}` : ''}${yourEmail ? `<br><br><strong>Your Email</strong><br>${yourEmail}` : ''}</p>
                     </div>
                     <div class="invoice-party">
                         <h4>Bill To</h4>
