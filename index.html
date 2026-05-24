@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Generator</title>
-    <link rel="icon" type="image/svg+xml" href="invoice-logo/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,6 +18,7 @@
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--primary-dark); padding: 30px 30px 0; }
         
         .app-header { text-align: center; margin-bottom: 30px; position: relative; }
+        .app-header .logo { display: block; margin: 0 auto 8px; width: 64px; height: 64px; }
         .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px; }
         .app-header .subtitle { color: rgba(255,255,255,0.7); margin-top: 6px; font-size: 1rem; font-weight: 400; }
         .app-header .getting-started {
@@ -238,6 +239,7 @@
                 <option value="dark">Dark</option>
             </select>
         </div>
+        <img class="logo" src="invoice-logo/icon-512.svg" alt="Invoice Generator">
         <h1>Invoice Generator</h1>
         <div class="subtitle">Create professional invoices in seconds</div>
         <a class="getting-started" href="#" onclick="document.getElementById('welcomeOverlay').classList.remove('hidden'); return false;">Getting Started</a>
