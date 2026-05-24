@@ -10,8 +10,15 @@
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #5a67d8; min-height: 100vh; padding: 30px; }
         
         .app-header { text-align: center; margin-bottom: 30px; }
-        .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .app-header p { color: rgba(255,255,255,0.9); margin-top: 5px; }
+        .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px; }
+        .app-header .subtitle { color: rgba(255,255,255,0.7); margin-top: 6px; font-size: 1rem; font-weight: 400; }
+        .app-header .getting-started {
+            display: inline-block; margin-top: 12px; padding: 8px 20px;
+            background: rgba(255,255,255,0.15); color: white; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 500; cursor: pointer; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.25); transition: background 0.2s;
+        }
+        .app-header .getting-started:hover { background: rgba(255,255,255,0.25); }
         
         .container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 400px 1fr; gap: 25px; }
         
@@ -47,10 +54,17 @@
         button.outline:hover { background: white; color: #667eea; }
         
         .preview-section { display: flex; flex-direction: column; gap: 20px; }
-        .preview-header { display: flex; justify-content: space-between; align-items: center; }
-        .preview-header h2 { color: white; font-size: 1.3rem; }
-        .preview-actions { display: flex; gap: 10px; }
-        .preview-actions button { margin-top: 0; }
+        .preview-header { 
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.1); border-radius: 12px; padding: 10px 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .preview-header h2 { color: white; font-size: 1rem; font-weight: 600; }
+        .preview-actions { display: flex; gap: 8px; }
+        .preview-actions button { 
+            margin-top: 0; padding: 8px 14px; font-size: 0.8rem; border-radius: 8px;
+            font-weight: 500;
+        }
         
         .invoice-preview { 
             background: white; padding: 50px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); 
@@ -196,7 +210,8 @@
 <body>
     <div class="app-header">
         <h1>Invoice Generator</h1>
-        <p>Create professional invoices in seconds &mdash; <a href="#" onclick="document.getElementById('welcomeOverlay').classList.remove('hidden'); return false;" style="color:rgba(255,255,255,0.9);text-decoration:underline;">Getting Started</a></p>
+        <div class="subtitle">Create professional invoices in seconds</div>
+        <a class="getting-started" href="#" onclick="document.getElementById('welcomeOverlay').classList.remove('hidden'); return false;">Getting Started</a>
     </div>
     
     <div class="container">
