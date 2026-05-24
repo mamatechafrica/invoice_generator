@@ -6,9 +6,15 @@
     <title>Invoice Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: var(--primary);
+            --primary-dark: var(--primary-dark);
+            --primary-light: rgba(102,126,234,0.12);
+            --accent: #11998e;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { margin: 0; padding: 0; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #5a67d8; padding: 30px 30px 0; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--primary-dark); padding: 30px 30px 0; }
         
         .app-header { text-align: center; margin-bottom: 30px; }
         .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px; }
@@ -24,7 +30,7 @@
         .container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 400px 1fr; gap: 25px; align-items: start; }
         .sidebar { display: flex; flex-direction: column; gap: 16px; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); }
         .card { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
-        .card-header { background: #667eea; color: white; padding: 14px 20px; }
+        .card-header { background: var(--primary); color: white; padding: 14px 20px; }
         .card-header h2 { font-size: 1rem; font-weight: 600; }
         .card-body { padding: 20px; }
         
@@ -37,12 +43,12 @@
             width: 100%; padding: 10px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; 
             font-size: 0.9rem; transition: all 0.2s; background: #f8fafc; font-family: inherit;
         }
-        input:focus, textarea:focus, select:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 3px rgba(102,126,234,0.12); }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(102,126,234,0.12); }
         textarea { height: 60px; resize: vertical; }
         
         .btn-group { display: flex; gap: 10px; margin-top: 20px; }
         button { 
-            flex: 1; background: #667eea; color: white; 
+            flex: 1; background: var(--primary); color: white; 
             border: none; padding: 14px 20px; border-radius: 10px; cursor: pointer; font-size: 0.95rem; 
             font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; margin-top: 18px;
         }
@@ -50,7 +56,7 @@
         button.secondary { background: #11998e; }
         button.secondary:hover { box-shadow: 0 6px 20px rgba(17,153,142,0.4); }
         button.outline { background: transparent; border: 2px solid rgba(255,255,255,0.7); color: white; }
-        button.outline:hover { background: white; color: #667eea; }
+        button.outline:hover { background: white; color: var(--primary); }
         .preview-section { display: flex; flex-direction: column; gap: 20px; }
         .preview-section > *:last-child { margin-bottom: 0; }
         .preview-header { 
@@ -71,7 +77,7 @@
         }
         
         .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
-        .invoice-title { font-size: 36px; font-weight: 700; color: #667eea; letter-spacing: 2px; }
+        .invoice-title { font-size: 36px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
         .invoice-meta { text-align: right; color: #64748b; }
         .invoice-meta .number { font-size: 1.5rem; font-weight: 700; color: #334155; }
         
@@ -81,7 +87,7 @@
         
         .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
         .invoice-table th { 
-            background: #667eea; color: white; 
+            background: var(--primary); color: white; 
             padding: 14px 16px; text-align: left; font-weight: 600; font-size: 0.85rem;
         }
         .invoice-table th:last-child { text-align: right; }
@@ -93,13 +99,13 @@
         .invoice-totals { display: flex; justify-content: flex-end; }
         .totals-box { width: 280px; }
         .totals-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #64748b; }
-        .totals-row.total { border-bottom: none; padding-top: 16px; margin-top: 8px; border-top: 3px solid #667eea; }
+        .totals-row.total { border-bottom: none; padding-top: 16px; margin-top: 8px; border-top: 3px solid var(--primary); }
         .totals-row.total .label { font-size: 1.1rem; font-weight: 700; color: #334155; }
-        .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: #667eea; }
+        .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
         
         .bank-section { 
             margin-top: 50px; padding: 30px; background: #f1f5f9; 
-            border-radius: 12px; border-left: 4px solid #667eea;
+            border-radius: 12px; border-left: 4px solid var(--primary);
         }
         .bank-section h3 { color: #334155; font-size: 1rem; margin-bottom: 16px; }
         .bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -138,7 +144,7 @@
             margin: 20px 0;
         }
         .welcome-modal .steps li { color: #334155; margin-bottom: 10px; font-size: 0.95rem; }
-        .welcome-modal .steps li strong { color: #667eea; }
+        .welcome-modal .steps li strong { color: var(--primary); }
         .welcome-modal .privacy-badge {
             display: inline-flex; align-items: center; gap: 8px;
             background: #e8f5e9; color: #2e7d32; padding: 10px 20px;
@@ -153,8 +159,8 @@
             padding: 14px 0; cursor: pointer; color: #334155; font-weight: 600;
             font-size: 0.9rem; user-select: none;
         }
-        .faq-question:hover { color: #667eea; }
-        .faq-question::after { content: '+'; font-size: 1.2rem; color: #667eea; font-weight: 400; }
+        .faq-question:hover { color: var(--primary); }
+        .faq-question::after { content: '+'; font-size: 1.2rem; color: var(--primary); font-weight: 400; }
         .faq-question.open::after { content: '\2013'; }
         .faq-answer {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
@@ -170,7 +176,7 @@
             background: #f8fafc; border-radius: 10px; padding: 14px 10px;
         }
         .guide-steps .step-num {
-            background: #667eea; color: white; width: 26px; height: 26px;
+            background: var(--primary); color: white; width: 26px; height: 26px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-size: 0.8rem; font-weight: 700; margin: 0 auto 8px;
         }
@@ -267,6 +273,16 @@
                         <div>
                             <label>Postal Address</label>
                             <input type="text" id="postalAddress" placeholder="P. O. Box - City">
+                        </div>
+                        <div>
+                            <label>Color Theme</label>
+                            <select id="colorTheme" onchange="applyTheme()">
+                                <option value="purple">Purple</option>
+                                <option value="blue">Blue</option>
+                                <option value="green">Green</option>
+                                <option value="teal">Teal</option>
+                                <option value="dark">Dark</option>
+                            </select>
                         </div>
                     </div>
                     <button onclick="saveSettings()">Save Account Info</button>
@@ -443,6 +459,23 @@
         const currencySymbols = { 'USD': '$', 'KES': 'KSh ', 'GBP': '£', 'EUR': '€' };
         const currencyNames = { 'USD': 'USD', 'KES': 'KES', 'GBP': 'GBP', 'EUR': 'EUR' };
 
+        const themes = {
+            purple:  { primary: '#667eea', dark: '#5a67d8', accent: '#11998e' },
+            blue:    { primary: '#3182ce', dark: '#2b6cb0', accent: '#11998e' },
+            green:   { primary: '#38a169', dark: '#2f855a', accent: '#11998e' },
+            teal:    { primary: '#319795', dark: '#285e61', accent: '#11998e' },
+            dark:    { primary: '#4a5568', dark: '#2d3748', accent: '#11998e' }
+        };
+
+        function applyTheme(themeName) {
+            const t = themes[themeName || document.getElementById('colorTheme').value];
+            const root = document.documentElement;
+            root.style.setProperty('--primary', t.primary);
+            root.style.setProperty('--primary-dark', t.dark);
+            root.style.setProperty('--accent', t.accent);
+            localStorage.setItem('colorTheme', themeName || document.getElementById('colorTheme').value);
+        }
+
         function toggleFaq(el) {
             el.classList.toggle('open');
             el.nextElementSibling.classList.toggle('open');
@@ -493,6 +526,10 @@
             if (!localStorage.getItem('hasVisitedBefore')) {
                 document.getElementById('welcomeOverlay').classList.remove('hidden');
             }
+
+            const savedTheme = localStorage.getItem('colorTheme') || 'purple';
+            document.getElementById('colorTheme').value = savedTheme;
+            applyTheme(savedTheme);
 
             loadSavedClients();
             updateDownloadCounter();
@@ -747,15 +784,19 @@
                     <title>Invoice #${document.getElementById('invoiceNumber').value}</title>
                     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
                     <style>
+                        :root {
+                            --primary: ${themes[localStorage.getItem('colorTheme') || 'purple'].primary};
+                            --primary-dark: ${themes[localStorage.getItem('colorTheme') || 'purple'].dark};
+                        }
                         body { font-family: 'Inter', sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; color: #334155; }
-                        .invoice-title { font-size: 36px; font-weight: 700; color: #667eea; letter-spacing: 2px; }
+                        .invoice-title { font-size: 36px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
                         .invoice-header { display: flex; justify-content: space-between; margin-bottom: 40px; }
                         .invoice-meta { text-align: right; }
                         .invoice-meta .number { font-size: 1.5rem; font-weight: 700; }
                         .invoice-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
                         .invoice-party h4 { font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; margin-bottom: 8px; }
                         .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-                        .invoice-table th { background: #667eea; color: white; padding: 14px; text-align: left; }
+                        .invoice-table th { background: var(--primary); color: white; padding: 14px; text-align: left; }
                         .invoice-table th:last-child { text-align: right; }
                         .invoice-table td { padding: 16px; border-bottom: 1px solid #e2e8f0; }
                         .invoice-table td:last-child { text-align: right; font-weight: 600; }
@@ -763,9 +804,9 @@
                         .invoice-totals { display: flex; justify-content: flex-end; }
                         .totals-box { width: 280px; }
                         .totals-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
-                        .totals-row.total { border-top: 3px solid #667eea; border-bottom: none; }
-                        .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: #667eea; }
-                        .bank-section { margin-top: 50px; padding: 30px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #667eea; }
+                        .totals-row.total { border-top: 3px solid var(--primary); border-bottom: none; }
+                        .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+                        .bank-section { margin-top: 50px; padding: 30px; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary); }
                         .bank-section h3 { margin-bottom: 16px; }
                         .bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
                         .bank-item label { font-size: 0.7rem; color: #94a3b8; display: block; margin-bottom: 4px; }
@@ -790,15 +831,19 @@
     <title>Invoice #${invoiceNum}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: ${themes[localStorage.getItem('colorTheme') || 'purple'].primary};
+            --primary-dark: ${themes[localStorage.getItem('colorTheme') || 'purple'].dark};
+        }
         body { font-family: 'Inter', sans-serif; padding: 50px; max-width: 800px; margin: 0 auto; color: #334155; }
-        .invoice-title { font-size: 36px; font-weight: 700; color: #667eea; letter-spacing: 2px; }
+        .invoice-title { font-size: 36px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
         .invoice-header { display: flex; justify-content: space-between; margin-bottom: 40px; }
         .invoice-meta { text-align: right; }
         .invoice-meta .number { font-size: 1.5rem; font-weight: 700; }
         .invoice-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
         .invoice-party h4 { font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; margin-bottom: 8px; }
         .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-        .invoice-table th { background: #667eea; color: white; padding: 14px; text-align: left; }
+        .invoice-table th { background: var(--primary); color: white; padding: 14px; text-align: left; }
         .invoice-table th:last-child { text-align: right; }
         .invoice-table td { padding: 16px; border-bottom: 1px solid #e2e8f0; }
         .invoice-table td:last-child { text-align: right; font-weight: 600; }
@@ -806,9 +851,9 @@
         .invoice-totals { display: flex; justify-content: flex-end; }
         .totals-box { width: 280px; }
         .totals-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
-        .totals-row.total { border-top: 3px solid #667eea; border-bottom: none; }
-        .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: #667eea; }
-        .bank-section { margin-top: 50px; padding: 30px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #667eea; }
+        .totals-row.total { border-top: 3px solid var(--primary); border-bottom: none; }
+        .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+        .bank-section { margin-top: 50px; padding: 30px; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary); }
         .bank-section h3 { margin-bottom: 16px; }
         .bank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .bank-item label { font-size: 0.7rem; color: #94a3b8; display: block; margin-bottom: 4px; }
