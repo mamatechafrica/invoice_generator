@@ -223,8 +223,16 @@
                 <div class="card-body">
                     <div class="form-grid">
                         <div>
-                            <label>Account Name</label>
-                            <input type="text" id="accountName" placeholder="Josephine Naijeria Chepkoech Toweett">
+                            <label>Your Name</label>
+                            <input type="text" id="yourName" placeholder="Josephine Naijeria Toweett">
+                        </div>
+                        <div>
+                            <label>Your Email</label>
+                            <input type="email" id="yourEmail" placeholder="josephine@example.com">
+                        </div>
+                        <div>
+                            <label>Account Holder Name</label>
+                            <input type="text" id="accountName" placeholder="Coding4Billions Ltd">
                         </div>
                         <div>
                             <label>Bank Name</label>
@@ -488,6 +496,8 @@
             
             const saved = JSON.parse(localStorage.getItem('invoiceSettings') || '{}');
             if (saved.accountName) document.getElementById('accountName').value = saved.accountName;
+            if (saved.yourName) document.getElementById('yourName').value = saved.yourName;
+            if (saved.yourEmail) document.getElementById('yourEmail').value = saved.yourEmail;
             if (saved.bankName) document.getElementById('bankName').value = saved.bankName;
             if (saved.physicalAddress) document.getElementById('physicalAddress').value = saved.physicalAddress;
             if (saved.postalAddress) document.getElementById('postalAddress').value = saved.postalAddress;
@@ -504,6 +514,8 @@
 
         function saveSettings() {
             const settings = {
+                yourName: document.getElementById('yourName').value,
+                yourEmail: document.getElementById('yourEmail').value,
                 accountName: document.getElementById('accountName').value,
                 bankName: document.getElementById('bankName').value,
                 physicalAddress: document.getElementById('physicalAddress').value,
@@ -533,6 +545,8 @@
             const totalAmount = document.getElementById('totalAmount').value || '0';
             
             const accountName = document.getElementById('accountName').value || '[Account Name]';
+            const yourName = document.getElementById('yourName').value || '[Your Name]';
+            const yourEmail = document.getElementById('yourEmail').value || '';
             const bankName = document.getElementById('bankName').value || '[Bank Name]';
             const accountNumber = document.getElementById('accountNumber').value || '[Account Number]';
             const physicalAddress = document.getElementById('physicalAddress').value || '[Address]';
@@ -553,7 +567,7 @@
                 <div class="invoice-parties">
                     <div class="invoice-party">
                         <h4>From</h4>
-                        <p><strong>${accountName}</strong><br>${physicalAddress}${postalAddress ? `<br>${postalAddress}` : ''}</p>
+                        <p><strong>${yourName}</strong><br>${physicalAddress}${postalAddress ? `<br>${postalAddress}` : ''}${yourEmail ? `<br>${yourEmail}` : ''}</p>
                     </div>
                     <div class="invoice-party">
                         <h4>Bill To</h4>
@@ -691,7 +705,8 @@
             
             downloadHTML();
             
-            const subject = `Invoice #${invoiceNum} from Josephine Naijeria Toweett`;
+            const yourName = document.getElementById('yourName').value || 'Invoice Sender';
+            const subject = `Invoice #${invoiceNum} from ${yourName}`;
             const body = `Dear ${billToName},\n\nPlease find attached Invoice #${invoiceNum} for ${currencySymbol}${amount}.\n\nI've sent the invoice as an HTML file - please save it as PDF before sending.\n\n${billToOrg ? 'Regards,\n' + billToOrg : 'Thank you for your business!'}`;
             
             const mailtoLink = `mailto:${billToEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
