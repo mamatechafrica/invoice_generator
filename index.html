@@ -224,28 +224,28 @@
                     <div class="form-grid">
                         <div>
                             <label>Your Name</label>
-                            <input type="text" id="yourName" placeholder="Josephine Naijeria Toweett">
+                            <input type="text" id="yourName" placeholder="Your full name">
                         </div>
                         <div>
                             <label>Your Email</label>
-                            <input type="email" id="yourEmail" placeholder="josephine@example.com">
+                            <input type="email" id="yourEmail" placeholder="you@example.com">
                         </div>
                         <div>
                             <label>Account Holder Name</label>
-                            <input type="text" id="accountName" placeholder="Coding4Billions Ltd">
+                            <input type="text" id="accountName" placeholder="Business or account name">
                         </div>
                         <div>
                             <label>Bank Name</label>
-                            <input type="text" id="bankName" placeholder="Standard Chartered Bank">
+                            <input type="text" id="bankName" placeholder="Your bank name">
                         </div>
                         <div>
                             <label>Account Number</label>
-                            <input type="text" id="accountNumber" placeholder="1234567890">
+                            <input type="text" id="accountNumber" placeholder="0000000000">
                         </div>
                         <div class="form-row">
                             <div>
                                 <label>Swift Code</label>
-                                <input type="text" id="swiftCode" placeholder="SCBLKENXXXX">
+                                <input type="text" id="swiftCode" placeholder="BANKCODEXXX">
                             </div>
                             <div>
                                 <label>Currency</label>
@@ -259,11 +259,11 @@
                         </div>
                         <div>
                             <label>Physical Address</label>
-                            <textarea id="physicalAddress" placeholder="Standard Chartered Building, Westlands Road, Chiromo Lane, Westlands"></textarea>
+                            <textarea id="physicalAddress" placeholder="Your street address"></textarea>
                         </div>
                         <div>
                             <label>Postal Address</label>
-                            <input type="text" id="postalAddress" placeholder="P. O. Box 30003 - 00100 Nairobi">
+                            <input type="text" id="postalAddress" placeholder="P. O. Box - City">
                         </div>
                     </div>
                     <button onclick="saveSettings()">Save Account Info</button>
@@ -300,11 +300,11 @@
                         </div>
                         <div>
                             <label>Bill To (Name)</label>
-                            <input type="text" id="billToName" placeholder="Kirsten Mathieson">
+                            <input type="text" id="billToName" placeholder="Client full name">
                         </div>
                         <div>
                             <label>Organization (Optional)</label>
-                            <input type="text" id="billToOrg" placeholder="Transform Health">
+                            <input type="text" id="billToOrg" placeholder="Company or organization">
                         </div>
                         <div>
                             <label>Email (Optional)</label>
@@ -508,16 +508,6 @@
             const nextNum = parseInt(localStorage.getItem('nextInvoiceNumber') || '7');
             document.getElementById('invoiceNumber').value = String(nextNum).padStart(4, '0');
             document.getElementById('invoiceDate').valueAsDate = new Date();
-
-            if (!saved.yourName) document.getElementById('yourName').value = document.getElementById('yourName').placeholder;
-            if (!saved.yourEmail) document.getElementById('yourEmail').value = document.getElementById('yourEmail').placeholder;
-            if (!saved.accountName) document.getElementById('accountName').value = document.getElementById('accountName').placeholder;
-            if (!saved.physicalAddress) document.getElementById('physicalAddress').value = document.getElementById('physicalAddress').placeholder;
-            if (!saved.bankName) document.getElementById('bankName').value = document.getElementById('bankName').placeholder;
-            if (!saved.accountNumber) document.getElementById('accountNumber').value = document.getElementById('accountNumber').placeholder;
-            if (!saved.swiftCode) document.getElementById('swiftCode').value = document.getElementById('swiftCode').placeholder;
-            if (!saved.postalAddress) document.getElementById('postalAddress').value = document.getElementById('postalAddress').placeholder;
-
             calcAmount();
             generateInvoice();
         };
