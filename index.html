@@ -508,6 +508,16 @@
             const nextNum = parseInt(localStorage.getItem('nextInvoiceNumber') || '7');
             document.getElementById('invoiceNumber').value = String(nextNum).padStart(4, '0');
             document.getElementById('invoiceDate').valueAsDate = new Date();
+
+            if (!saved.yourName) document.getElementById('yourName').value = document.getElementById('yourName').placeholder;
+            if (!saved.yourEmail) document.getElementById('yourEmail').value = document.getElementById('yourEmail').placeholder;
+            if (!saved.accountName) document.getElementById('accountName').value = document.getElementById('accountName').placeholder;
+            if (!saved.physicalAddress) document.getElementById('physicalAddress').value = document.getElementById('physicalAddress').placeholder;
+            if (!saved.bankName) document.getElementById('bankName').value = document.getElementById('bankName').placeholder;
+            if (!saved.accountNumber) document.getElementById('accountNumber').value = document.getElementById('accountNumber').placeholder;
+            if (!saved.swiftCode) document.getElementById('swiftCode').value = document.getElementById('swiftCode').placeholder;
+            if (!saved.postalAddress) document.getElementById('postalAddress').value = document.getElementById('postalAddress').placeholder;
+
             calcAmount();
             generateInvoice();
         };
