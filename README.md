@@ -23,6 +23,10 @@ A simple, professional invoice generator that runs entirely in your browser. You
 
 **[Try it now →](https://mamatechafrica.github.io/invoice_generator)**
 
+## Video Demo
+
+[![Watch the demo](https://img.youtube.com/vi/xEG9uzYImZg/maxresdefault.jpg)](https://youtu.be/xEG9uzYImZg)
+
 ## Download & Use
 
 ### Use Online
