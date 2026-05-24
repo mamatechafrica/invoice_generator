@@ -157,7 +157,7 @@
         @media print {
             body { background: white; padding: 0; }
             .container { display: block; }
-            .sidebar, .app-header, .preview-header { display: none; }
+            .card, .sidebar, .app-header, .preview-header { display: none; }
             .invoice-preview { box-shadow: none; min-height: auto; padding: 20px; }
         }
         
@@ -291,6 +291,17 @@
                 </div>
             </div>
 
+        <div class="preview-section">
+            <div class="preview-header">
+                <h2>Preview</h2>
+                <div class="preview-actions">
+                    <button class="secondary" onclick="printInvoice()">Print / PDF</button>
+                    <button class="outline" onclick="downloadHTML()">Download</button>
+                    <button class="outline" onclick="sendEmail()" style="border-color:#ea4335;color:#ea4335;">Email</button>
+                </div>
+            </div>
+            <div id="invoicePreview" class="invoice-preview"></div>
+
             <div class="card">
                 <div class="card-header">
                     <h2>FAQ & Privacy</h2>
@@ -322,18 +333,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="preview-section">
-            <div class="preview-header">
-                <h2>Preview</h2>
-                <div class="preview-actions">
-                    <button class="secondary" onclick="printInvoice()">Print / PDF</button>
-                    <button class="outline" onclick="downloadHTML()">Download</button>
-                    <button class="outline" onclick="sendEmail()" style="border-color:#ea4335;color:#ea4335;">Email</button>
-                </div>
-            </div>
-            <div id="invoicePreview" class="invoice-preview"></div>
         </div>
     </div>
 
