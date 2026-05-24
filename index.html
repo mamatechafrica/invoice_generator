@@ -290,25 +290,19 @@
                                 <input type="date" id="invoiceDate">
                             </div>
                         </div>
-                        <div>
-                            <label>Bill To (Select Client)</label>
-                            <select id="billToSelect" onchange="loadClientFromSelect()">
-                                <option value="">Select or type new...</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>Bill To (Name)</label>
-                            <input type="text" id="billToName" placeholder="Kirsten Mathieson">
-                        </div>
                         <div class="form-row">
+                            <div>
+                                <label>Bill To (Name)</label>
+                                <input type="text" id="billToName" placeholder="Kirsten Mathieson">
+                            </div>
                             <div>
                                 <label>Organization (Optional)</label>
                                 <input type="text" id="billToOrg" placeholder="Transform Health">
                             </div>
-                            <div>
-                                <label>Email (Optional)</label>
-                                <input type="email" id="billToEmail" placeholder="client@email.com">
-                            </div>
+                        </div>
+                        <div>
+                            <label>Email (Optional)</label>
+                            <input type="email" id="billToEmail" placeholder="client@email.com">
                         </div>
                         <div>
                             <label>Description</label>
@@ -320,13 +314,15 @@
                                 <input type="number" id="amount" placeholder="700">
                             </div>
                             <div>
-                                <label>Percentage %</label>
-                                <input type="number" id="percentage" value="20" placeholder="20">
+                                <label>Of Total</label>
+                                <input type="number" id="totalAmount" placeholder="3500">
                             </div>
                         </div>
                         <div>
-                            <label>Of Total</label>
-                            <input type="number" id="totalAmount" placeholder="3500">
+                            <label>Percentage %</label>
+                            <input type="number" id="percentage" value="20" placeholder="20">
+                        </div>
+                    </div>
                         </div>
                     </div>
                     <button onclick="generateInvoice()">Generate Invoice</button>
@@ -486,7 +482,6 @@
             }
 
             loadSavedClients();
-            loadClientDropdown();
             updateDownloadCounter();
             
             const saved = JSON.parse(localStorage.getItem('invoiceSettings') || '{}');
@@ -653,7 +648,6 @@
             localStorage.setItem('savedClients', JSON.stringify(clients));
             
             loadSavedClients();
-            loadClientDropdown();
             document.getElementById('savedClients').value = name;
             alert('Client saved!');
         }
@@ -672,7 +666,6 @@
             localStorage.setItem('savedClients', JSON.stringify(clients));
             
             loadSavedClients();
-            loadClientDropdown();
             document.getElementById('billToName').value = '';
             document.getElementById('billToOrg').value = '';
             document.getElementById('billToEmail').value = '';
@@ -706,38 +699,6 @@
         function loadClient() {
             const name = document.getElementById('savedClients').value;
             if (!name) return;
-            
-            const clients = JSON.parse(localStorage.getItem('savedClients') || '{}');
-            const client = clients[name];
-            if (client) {
-                document.getElementById('billToName').value = client.name || '';
-                document.getElementById('billToOrg').value = client.org || '';
-                document.getElementById('billToEmail').value = client.email || '';
-                generateInvoice();
-            }
-        }
-
-        function loadClientDropdown() {
-            const clients = JSON.parse(localStorage.getItem('savedClients') || '{}');
-            const select = document.getElementById('billToSelect');
-            select.innerHTML = '<option value="">Select or type new...</option>';
-            for (const [name, data] of Object.entries(clients)) {
-                const option = document.createElement('option');
-                option.value = name;
-                option.textContent = name;
-                select.appendChild(option);
-            }
-        }
-
-        function loadClientFromSelect() {
-            const name = document.getElementById('billToSelect').value;
-            if (!name) {
-                document.getElementById('billToName').value = '';
-                document.getElementById('billToOrg').value = '';
-                document.getElementById('billToEmail').value = '';
-                generateInvoice();
-                return;
-            }
             
             const clients = JSON.parse(localStorage.getItem('savedClients') || '{}');
             const client = clients[name];
