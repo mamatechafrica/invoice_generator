@@ -542,7 +542,9 @@
 
         function generateInvoice() {
             const invoiceNum = document.getElementById('invoiceNumber').value;
-            const date = document.getElementById('invoiceDate').value;
+            const dateRaw = document.getElementById('invoiceDate').value;
+            const [y, m, d] = dateRaw.split('-');
+            const date = `${d}/${m}/${y}`;
             const currency = document.getElementById('currency').value;
             const currencySymbol = currencySymbols[currency];
             const currencyName = currencyNames[currency];
