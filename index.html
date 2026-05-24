@@ -308,17 +308,17 @@
                         </div>
                         <div class="form-row">
                             <div>
-                                <label>Amount</label>
-                                <input type="number" id="amount" placeholder="700">
+                                <label>Amount (% of total)</label>
+                                <input type="text" id="amount" placeholder="0" readonly style="background:#eef2ff;font-weight:600;">
                             </div>
                             <div>
                                 <label>Of Total</label>
-                                <input type="number" id="totalAmount" placeholder="3500">
+                                <input type="number" id="totalAmount" placeholder="3500" oninput="calcAmount()">
                             </div>
                         </div>
                         <div>
                             <label>Percentage %</label>
-                            <input type="number" id="percentage" value="20" placeholder="20">
+                            <input type="number" id="percentage" value="20" placeholder="20" oninput="calcAmount()">
                         </div>
                     </div>
                     <button onclick="generateInvoice()">Generate Invoice</button>
@@ -472,6 +472,12 @@
                 });
         }
 
+        function calcAmount() {
+            const total = parseFloat(document.getElementById('totalAmount').value) || 0;
+            const pct = parseFloat(document.getElementById('percentage').value) || 0;
+            document.getElementById('amount').value = (total * pct / 100).toFixed(2);
+        }
+
         window.onload = function() {
             if (!localStorage.getItem('hasVisitedBefore')) {
                 document.getElementById('welcomeOverlay').classList.remove('hidden');
@@ -492,6 +498,7 @@
             const nextNum = parseInt(localStorage.getItem('nextInvoiceNumber') || '7');
             document.getElementById('invoiceNumber').value = String(nextNum).padStart(4, '0');
             document.getElementById('invoiceDate').valueAsDate = new Date();
+            calcAmount();
             generateInvoice();
         };
 
