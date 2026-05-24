@@ -109,6 +109,50 @@
         .client-actions { display: flex; gap: 8px; margin-top: 8px; }
         .client-actions button { flex: 1; padding: 8px; font-size: 0.8rem; margin-top: 0; }
         .delete-btn { background: #dc2626; }
+
+        .welcome-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); z-index: 1000; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .welcome-overlay.hidden { display: none; }
+        .welcome-modal {
+            background: white; border-radius: 20px; max-width: 600px; width: 90%;
+            padding: 40px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .welcome-modal .icon { font-size: 48px; margin-bottom: 16px; }
+        .welcome-modal h2 { font-size: 1.5rem; color: #334155; margin-bottom: 8px; }
+        .welcome-modal p { color: #64748b; margin-bottom: 12px; line-height: 1.6; }
+        .welcome-modal .steps { 
+            text-align: left; background: #f8fafc; border-radius: 12px; padding: 20px 24px;
+            margin: 20px 0;
+        }
+        .welcome-modal .steps li { color: #334155; margin-bottom: 10px; font-size: 0.95rem; }
+        .welcome-modal .steps li strong { color: #667eea; }
+        .welcome-modal .privacy-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #e8f5e9; color: #2e7d32; padding: 10px 20px;
+            border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .faq-item { border-bottom: 1px solid #e2e8f0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 0; cursor: pointer; color: #334155; font-weight: 600;
+            font-size: 0.9rem; user-select: none;
+        }
+        .faq-question:hover { color: #667eea; }
+        .faq-question::after { content: '+'; font-size: 1.2rem; color: #667eea; font-weight: 400; }
+        .faq-question.open::after { content: '\u2013'; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            color: #64748b; font-size: 0.85rem; line-height: 1.5;
+            padding: 0;
+        }
+        .faq-answer.open { max-height: 300px; padding-bottom: 12px; }
+        .faq-answer p { margin-bottom: 8px; }
         
         @media print {
             body { background: white; padding: 0; }
@@ -125,7 +169,7 @@
 <body>
     <div class="app-header">
         <h1>Invoice Generator</h1>
-        <p>Create professional invoices in seconds</p>
+        <p>Create professional invoices in seconds &mdash; <a href="#" onclick="document.getElementById('welcomeOverlay').classList.remove('hidden'); return false;" style="color:rgba(255,255,255,0.9);text-decoration:underline;">Getting Started</a></p>
     </div>
     
     <div class="container">
@@ -246,6 +290,38 @@
                     <button onclick="generateInvoice()">Generate Invoice</button>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>FAQ & Privacy</h2>
+                </div>
+                <div class="card-body" style="padding: 0 24px;">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">Is my data private?</div>
+                        <div class="faq-answer"><p>Yes! Everything you type stays on your device. This app uses your browser's <strong>localStorage</strong> — your data is never sent to any server, database, or third party. Even we can't see it.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">Can other people see my invoices?</div>
+                        <div class="faq-answer"><p>No. Each browser stores its own data. Someone on a different computer or browser visiting the same URL will see a blank slate — not your information.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">What happens if I clear my browser data?</div>
+                        <div class="faq-answer"><p>Your saved settings and clients will be lost. To avoid this, download your invoices as PDF or HTML, and keep a copy of your settings (write them down or screenshot).</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">Can I use this offline?</div>
+                        <div class="faq-answer"><p>Yes! Download the files from GitHub and open <code>index.html</code> in your browser. It works without any internet connection.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">How do I send an invoice to my client?</div>
+                        <div class="faq-answer"><p>Click <strong>Print/PDF</strong> and save as PDF, then email it as an attachment. Or use the <strong>Email</strong> button to open your mail app with a pre-filled message — attach the downloaded HTML invoice.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">Is this free?</div>
+                        <div class="faq-answer"><p>Yes, completely free. No sign-ups, no subscriptions, no hidden costs. The source code is open on GitHub for anyone to use, inspect, or modify.</p></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="preview-section">
@@ -261,11 +337,46 @@
         </div>
     </div>
 
+    <div id="welcomeOverlay" class="welcome-overlay hidden">
+        <div class="welcome-modal">
+            <div class="icon">&#128203;</div>
+            <h2>Welcome to Invoice Generator</h2>
+            <p>Create professional invoices in seconds. No sign-ups, no servers — everything stays on your device.</p>
+            <div class="privacy-badge">
+                &#128274; Your data is private & stored only in your browser
+            </div>
+            <div class="steps">
+                <ol>
+                    <li><strong>Account Settings</strong> &mdash; Fill in your name, bank details, and address on the left</li>
+                    <li><strong>Add a Client</strong> &mdash; Enter your client's name and contact info, then click Save</li>
+                    <li><strong>Generate Invoice</strong> &mdash; Fill in the description and amount, preview on the right</li>
+                    <li><strong>Print or Email</strong> &mdash; Use Print/PDF to save, or Email to send directly</li>
+                </ol>
+            </div>
+            <button onclick="dismissWelcome()" style="padding:14px 40px; width:auto;">Got it, let's go!</button>
+            <p style="font-size:0.8rem; margin-top:12px; color:#94a3b8;">Reading the FAQ below will answer your privacy questions.</p>
+        </div>
+    </div>
+
     <script>
         const currencySymbols = { 'USD': '$', 'KES': 'KSh ', 'GBP': '£', 'EUR': '€' };
         const currencyNames = { 'USD': 'USD', 'KES': 'KES', 'GBP': 'GBP', 'EUR': 'EUR' };
 
+        function toggleFaq(el) {
+            el.classList.toggle('open');
+            el.nextElementSibling.classList.toggle('open');
+        }
+
+        function dismissWelcome() {
+            document.getElementById('welcomeOverlay').classList.add('hidden');
+            localStorage.setItem('hasVisitedBefore', 'true');
+        }
+
         window.onload = function() {
+            if (!localStorage.getItem('hasVisitedBefore')) {
+                document.getElementById('welcomeOverlay').classList.remove('hidden');
+            }
+
             loadSavedClients();
             loadClientDropdown();
             
