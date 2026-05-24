@@ -291,7 +291,7 @@
                         <div class="form-row">
                             <div>
                                 <label>Invoice Number</label>
-                                <input type="text" id="invoiceNumber" value="0007">
+                                <input type="text" id="invoiceNumber" value="0001">
                             </div>
                             <div>
                                 <label>Date</label>
@@ -505,7 +505,7 @@
             if (saved.accountNumber) document.getElementById('accountNumber').value = saved.accountNumber;
             if (saved.currency) document.getElementById('currency').value = saved.currency;
             
-            const nextNum = parseInt(localStorage.getItem('nextInvoiceNumber') || '7');
+            const nextNum = parseInt(localStorage.getItem('nextInvoiceNumber') || '1');
             document.getElementById('invoiceNumber').value = String(nextNum).padStart(4, '0');
             document.getElementById('invoiceDate').valueAsDate = new Date();
             calcAmount();
