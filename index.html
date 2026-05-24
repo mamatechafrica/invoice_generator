@@ -16,7 +16,7 @@
         html, body { margin: 0; padding: 0; }
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--primary-dark); padding: 30px 30px 0; }
         
-        .app-header { text-align: center; margin-bottom: 30px; }
+        .app-header { text-align: center; margin-bottom: 30px; position: relative; }
         .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px; }
         .app-header .subtitle { color: rgba(255,255,255,0.7); margin-top: 6px; font-size: 1rem; font-weight: 400; }
         .app-header .getting-started {
@@ -26,6 +26,19 @@
             border: 1px solid rgba(255,255,255,0.25); transition: background 0.2s;
         }
         .app-header .getting-started:hover { background: rgba(255,255,255,0.25); }
+        .theme-selector {
+            position: absolute; top: 0; right: 0;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .theme-selector label {
+            color: rgba(255,255,255,0.7); font-size: 0.8rem; text-transform: none; letter-spacing: 0; margin-bottom: 0; font-weight: 500;
+        }
+        .theme-selector select {
+            width: auto; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 8px; background: rgba(255,255,255,0.1); color: white;
+            font-size: 0.8rem; cursor: pointer;
+        }
+        .theme-selector select:focus { outline: none; border-color: rgba(255,255,255,0.5); }
         
         .container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 400px 1fr; gap: 25px; align-items: start; }
         .sidebar { display: flex; flex-direction: column; gap: 16px; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); }
@@ -214,6 +227,16 @@
 </head>
 <body>
     <div class="app-header">
+        <div class="theme-selector">
+            <label for="colorTheme">Theme</label>
+            <select id="colorTheme" onchange="applyTheme()">
+                <option value="purple">Purple</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="teal">Teal</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
         <h1>Invoice Generator</h1>
         <div class="subtitle">Create professional invoices in seconds</div>
         <a class="getting-started" href="#" onclick="document.getElementById('welcomeOverlay').classList.remove('hidden'); return false;">Getting Started</a>
@@ -273,16 +296,6 @@
                         <div>
                             <label>Postal Address</label>
                             <input type="text" id="postalAddress" placeholder="P. O. Box - City">
-                        </div>
-                        <div>
-                            <label>Color Theme</label>
-                            <select id="colorTheme" onchange="applyTheme()">
-                                <option value="purple">Purple</option>
-                                <option value="blue">Blue</option>
-                                <option value="green">Green</option>
-                                <option value="teal">Teal</option>
-                                <option value="dark">Dark</option>
-                            </select>
                         </div>
                     </div>
                     <button onclick="saveSettings()">Save Account Info</button>
