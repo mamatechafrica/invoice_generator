@@ -231,6 +231,10 @@
                             <input type="email" id="yourEmail" placeholder="you@example.com">
                         </div>
                         <div>
+                            <label>Invoice Prefix (e.g. JNT, ACME)</label>
+                            <input type="text" id="invoicePrefix" placeholder="INV" maxlength="8">
+                        </div>
+                        <div>
                             <label>Account Holder Name</label>
                             <input type="text" id="accountName" placeholder="Business or account name">
                         </div>
@@ -504,9 +508,15 @@
             if (saved.swiftCode) document.getElementById('swiftCode').value = saved.swiftCode;
             if (saved.accountNumber) document.getElementById('accountNumber').value = saved.accountNumber;
             if (saved.currency) document.getElementById('currency').value = saved.currency;
+            if (saved.invoicePrefix) document.getElementById('invoicePrefix').value = saved.invoicePrefix;
             
-            const nextNum = parseInt(localStorage.getItem('nextInvoiceNumber') || '1');
-            document.getElementById('invoiceNumber').value = String(nextNum).padStart(4, '0');
+            const prefix = document.getElementById('invoicePrefix').value || 'INV';
+            const year = new Date().getFullYear();
+            const storedYear = parseInt(localStorage.getItem('invoiceYear') || '0');
+            const counter = storedYear === year ? (parseInt(localStorage.getItem('invoiceCounter') || '0') + 1) : 1;
+            localStorage.setItem('invoiceYear', String(year));
+            localStorage.setItem('invoiceCounter', String(counter));
+            document.getElementById('invoiceNumber').value = `${prefix}-${year}-${String(counter).padStart(4, '0')}`;
             document.getElementById('invoiceDate').valueAsDate = new Date();
             calcAmount();
             generateInvoice();
@@ -516,6 +526,7 @@
             const settings = {
                 yourName: document.getElementById('yourName').value,
                 yourEmail: document.getElementById('yourEmail').value,
+                invoicePrefix: document.getElementById('invoicePrefix').value,
                 accountName: document.getElementById('accountName').value,
                 bankName: document.getElementById('bankName').value,
                 physicalAddress: document.getElementById('physicalAddress').value,
@@ -525,7 +536,6 @@
                 currency: document.getElementById('currency').value
             };
             localStorage.setItem('invoiceSettings', JSON.stringify(settings));
-            localStorage.setItem('nextInvoiceNumber', String(parseInt(document.getElementById('invoiceNumber').value) + 1));
             alert('Settings saved!');
             generateInvoice();
         }
