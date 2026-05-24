@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #5a67d8; min-height: 100vh; padding: 30px; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #5a67d8; min-height: 100vh; padding: 30px 30px 0; }
         
         .app-header { text-align: center; margin-bottom: 30px; }
         .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px; }
@@ -53,7 +53,7 @@
         button.outline { background: transparent; border: 2px solid rgba(255,255,255,0.7); color: white; }
         button.outline:hover { background: white; color: #667eea; }
         
-        .preview-section { display: flex; flex-direction: column; gap: 20px; }
+        .preview-section { display: flex; flex-direction: column; gap: 20px; padding-bottom: 30px; }
         .preview-header { 
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(255,255,255,0.1); border-radius: 12px; padding: 10px 16px;
@@ -68,7 +68,7 @@
         
         .invoice-preview { 
             background: white; padding: 50px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); 
-            min-height: 700px; position: relative;
+            position: relative;
         }
         
         .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
@@ -199,7 +199,7 @@
             body { background: white; padding: 0; }
             .container { display: block; }
             .card, .sidebar, .app-header, .preview-header { display: none; }
-            .invoice-preview { box-shadow: none; min-height: auto; padding: 20px; }
+            .invoice-preview { box-shadow: none; padding: 20px; }
         }
         
         @media (max-width: 1100px) {
