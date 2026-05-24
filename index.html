@@ -543,7 +543,6 @@
                 <div class="invoice-header">
                     <div>
                         <div class="invoice-title">INVOICE</div>
-                        <div style="color: #64748b; margin-top: 8px; font-weight: 500;">${accountName}</div>
                     </div>
                     <div class="invoice-meta">
                         <div class="number">#${invoiceNum}</div>
@@ -554,7 +553,7 @@
                 <div class="invoice-parties">
                     <div class="invoice-party">
                         <h4>From</h4>
-                        <p><strong>${accountName}</strong></p>
+                        <p><strong>${accountName}</strong><br>${physicalAddress}${postalAddress ? `<br>${postalAddress}` : ''}</p>
                     </div>
                     <div class="invoice-party">
                         <h4>Bill To</h4>
