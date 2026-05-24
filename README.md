@@ -1,5 +1,7 @@
 # Invoice Generator
 
+![Invoice Generator](invoice-logo/icon-512.svg)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Free](https://img.shields.io/badge/Price-Free-brightgreen.svg)](https://mamatechafrica.github.io/invoice_generator)
 [![Open Source](https://img.shields.io/badge/Open%20Source-Yes-purple.svg)](https://github.com/mamatechafrica/invoice_generator)
