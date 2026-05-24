@@ -150,6 +150,37 @@
         }
         .faq-answer.open { max-height: 300px; padding-bottom: 12px; }
         .faq-answer p { margin-bottom: 8px; }
+
+        .guide-steps { list-style: none; counter-reset: step; }
+        .guide-steps li {
+            counter-increment: step; display: flex; gap: 12px; align-items: flex-start;
+            padding: 10px 0; color: #334155; font-size: 0.9rem; border-bottom: 1px solid #e2e8f0;
+        }
+        .guide-steps li:last-child { border-bottom: none; }
+        .guide-steps .step-num {
+            background: #667eea; color: white; min-width: 26px; height: 26px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+        }
+        .guide-steps .step-text strong { display: block; margin-bottom: 2px; }
+        .guide-steps .step-text span { color: #94a3b8; font-size: 0.8rem; }
+        .download-btn-large {
+            display: block; width: 100%; padding: 16px; margin-top: 16px;
+            background: #11998e; color: white; border: none; border-radius: 10px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            text-align: center; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .download-btn-large:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(17,153,142,0.4); }
+        .benefit-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+        .benefit-item {
+            display: flex; align-items: center; gap: 10px; color: #334155;
+            font-size: 0.9rem; padding: 10px 14px; background: #f0fdf6;
+            border-radius: 8px; border-left: 3px solid #11998e;
+        }
+        .benefit-item .benefit-icon { font-size: 1.2rem; flex-shrink: 0; }
+        .download-count { 
+            text-align: center; color: #94a3b8; font-size: 0.75rem; margin-top: 8px;
+        }
         
         @media print {
             body { background: white; padding: 0; }
@@ -214,6 +245,54 @@
                         </div>
                     </div>
                     <button onclick="saveSettings()">Save Account Info</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Get the App (Free)</h2>
+                </div>
+                <div class="card-body">
+                    <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;">Download once, use forever. No internet needed. Your data stays on your device.</p>
+                    
+                    <ul class="guide-steps">
+                        <li>
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Download</strong>
+                                <span>Click the green button below to save the app</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Unzip</strong>
+                                <span>Extract the folder anywhere on your computer</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Open</strong>
+                                <span>Double-click <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:0.85rem;">index.html</code></span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="download-btn-large" onclick="trackAndDownload(event)">Download App</a>
+                    <div class="download-count" id="downloadCounter"></div>
+
+                    <div class="benefit-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">&#128274;</span> Your data never leaves your device
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">&#127760;</span> Works 100% offline after download
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">&#8734;</span> No sign-ups, no fees, use it forever
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -369,6 +448,36 @@
             localStorage.setItem('hasVisitedBefore', 'true');
         }
 
+        function trackAndDownload(e) {
+            e.preventDefault();
+            const localCount = parseInt(localStorage.getItem('downloadClickCount') || '0') + 1;
+            localStorage.setItem('downloadClickCount', String(localCount));
+            updateDownloadCounter();
+
+            fetch('https://api.countapi.xyz/hit/invoice-generator-app/downloads', { method: 'GET', mode: 'no-cors' }).catch(() => {});
+            fetch('https://api.countapi.xyz/get/invoice-generator-app/downloads')
+                .then(r => r.json()).then(d => {
+                    if (d && d.value) {
+                        document.getElementById('downloadCounter').textContent = d.value + ' downloads so far';
+                    }
+                }).catch(() => {});
+
+            setTimeout(() => {
+                window.location.href = 'https://github.com/naijeria/invoice-generator/archive/refs/heads/main.zip';
+            }, 300);
+        }
+
+        function updateDownloadCounter() {
+            fetch('https://api.countapi.xyz/get/invoice-generator-app/downloads')
+                .then(r => r.json()).then(d => {
+                    if (d && d.value) {
+                        document.getElementById('downloadCounter').textContent = d.value + ' downloads so far';
+                    }
+                }).catch(() => {
+                    document.getElementById('downloadCounter').textContent = '';
+                });
+        }
+
         window.onload = function() {
             if (!localStorage.getItem('hasVisitedBefore')) {
                 document.getElementById('welcomeOverlay').classList.remove('hidden');
@@ -376,6 +485,7 @@
 
             loadSavedClients();
             loadClientDropdown();
+            updateDownloadCounter();
             
             const saved = JSON.parse(localStorage.getItem('invoiceSettings') || '{}');
             if (saved.accountName) document.getElementById('accountName').value = saved.accountName;
