@@ -545,11 +545,11 @@
             const totalAmount = document.getElementById('totalAmount').value || '0';
             
             const accountName = document.getElementById('accountName').value || '[Account Name]';
-            const yourName = document.getElementById('yourName').value || '[Your Name]';
+            const yourName = document.getElementById('yourName').value || '';
             const yourEmail = document.getElementById('yourEmail').value || '';
             const bankName = document.getElementById('bankName').value || '[Bank Name]';
             const accountNumber = document.getElementById('accountNumber').value || '[Account Number]';
-            const physicalAddress = document.getElementById('physicalAddress').value || '[Address]';
+            const physicalAddress = document.getElementById('physicalAddress').value || '';
             const postalAddress = document.getElementById('postalAddress').value || '';
             const swiftCode = document.getElementById('swiftCode').value || '[Swift Code]';
 
@@ -567,7 +567,7 @@
                 <div class="invoice-parties">
                     <div class="invoice-party">
                         <h4>From</h4>
-                        <p><strong>${yourName}</strong><br>${physicalAddress}${postalAddress ? `<br>${postalAddress}` : ''}${yourEmail ? `<br>${yourEmail}` : ''}</p>
+                        <p><strong>${yourName}</strong>${physicalAddress ? `<br>${physicalAddress}` : ''}${postalAddress ? `<br>${postalAddress}` : ''}${yourEmail ? `<br>${yourEmail}` : ''}</p>
                     </div>
                     <div class="invoice-party">
                         <h4>Bill To</h4>
