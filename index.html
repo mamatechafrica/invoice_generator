@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 30px; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #5a67d8; min-height: 100vh; padding: 30px; }
         
         .app-header { text-align: center; margin-bottom: 30px; }
         .app-header h1 { color: white; font-size: 2.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
@@ -18,7 +18,7 @@
         .sidebar { display: flex; flex-direction: column; gap: 20px; }
         
         .card { background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); overflow: hidden; }
-        .card-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 18px 24px; }
+        .card-header { background: #667eea; color: white; padding: 18px 24px; }
         .card-header h2 { font-size: 1.1rem; font-weight: 600; }
         .card-body { padding: 24px; }
         
@@ -36,13 +36,13 @@
         
         .btn-group { display: flex; gap: 10px; margin-top: 20px; }
         button { 
-            flex: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+            flex: 1; background: #667eea; color: white; 
             border: none; padding: 14px 20px; border-radius: 10px; cursor: pointer; font-size: 0.95rem; 
-            font-weight: 600; transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; margin-top: 18px;
         }
         button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.4); }
-        button.secondary { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-        button.secondary:hover { box-shadow: 0 6px 20px rgba(56,239,125,0.4); }
+        button.secondary { background: #11998e; }
+        button.secondary:hover { box-shadow: 0 6px 20px rgba(17,153,142,0.4); }
         button.outline { background: transparent; border: 2px solid #667eea; color: #667eea; }
         button.outline:hover { background: #667eea; color: white; }
         
@@ -56,10 +56,6 @@
             min-height: 700px; position: relative;
         }
         
-        .invoice-brand { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; background-clip: text;
-        }
         .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
         .invoice-title { font-size: 36px; font-weight: 700; color: #667eea; letter-spacing: 2px; }
         .invoice-meta { text-align: right; color: #64748b; }
@@ -71,7 +67,7 @@
         
         .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
         .invoice-table th { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+            background: #667eea; color: white; 
             padding: 14px 16px; text-align: left; font-weight: 600; font-size: 0.85rem;
         }
         .invoice-table th:last-child { text-align: right; }
@@ -88,7 +84,7 @@
         .totals-row.total .value { font-size: 1.4rem; font-weight: 700; color: #667eea; }
         
         .bank-section { 
-            margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
+            margin-top: 50px; padding: 30px; background: #f1f5f9; 
             border-radius: 12px; border-left: 4px solid #667eea;
         }
         .bank-section h3 { color: #334155; font-size: 1rem; margin-bottom: 16px; }
