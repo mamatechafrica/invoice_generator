@@ -15,20 +15,17 @@ A simple, beautiful invoice generator that runs entirely in your browser. No sig
 
 ### Option 1: Use Online (GitHub Pages)
 
-Visit **https://[your-username].github.io/invoice-generator**
+Visit **https://mamatechafrica.github.io/invoice_generator**
 
 ### Option 2: Download & Use Offline
 
 1. Click the green **Code** button above and select **Download ZIP**
-2. Unzip the folder anywhere on your computer
-3. Open `index.html` in any browser (Chrome, Firefox, Safari, Edge)
-4. That's it — start creating invoices
 
 ### Option 3: Clone with Git
 
 ```bash
-git clone https://github.com/[your-username]/invoice-generator.git
-cd invoice-generator
+git clone https://github.com/mamatechafrica/invoice_generator.git
+cd invoice_generator
 open index.html
 ```
 
@@ -55,8 +52,8 @@ If you clear your browser data, you'll lose saved settings. To keep a backup:
 This app can be hosted on GitHub Pages for free:
 
 ```bash
-git clone https://github.com/[your-username]/invoice-generator.git
-cd invoice-generator
+git clone https://github.com/mamatechafrica/invoice_generator.git
+cd invoice_generator
 git push origin main
 ```
 
